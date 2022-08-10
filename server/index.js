@@ -21,8 +21,10 @@ io.on('connection', (socket) => {
     console.log(socket.id);
     
     socket.on('message', (message) => {
-        console.log(message);
-        socket.broadcast.emit('message', message);
+        socket.broadcast.emit('message', {
+            body: message,
+            from: socket.id
+        });
     })
 })
 
